@@ -1,17 +1,26 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import ProductList from './components/products/ProductList';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import HeaderCarousel from './components/HeaderCarousel';
+import FilterSection from './components/FilterSection';
 
 function App() {
   return (
-    <div className="App flex flex-col h-screen">
- 
-    <div className="overflow-y-scroll w-full">
+    <div className="App">
+      <Header />
       <Routes>
-        <Route path="/*" element={<ProductList />} />
+        <Route path="/*" element={
+          <>
+            <HeaderCarousel />
+              <ProductList />
+          </>
+        }
+        />
       </Routes>
+      <Footer />
     </div>
-  </div>
   );
 }
 
