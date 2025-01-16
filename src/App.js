@@ -6,7 +6,7 @@ import Header from './components/Header';
 import HeaderCarousel from './components/HeaderCarousel';
 import CartIcon from './components/cart/CartIcon';
 import Cart from './components/cart/Cart';
-import { CartProvider } from './components/CartProvider';
+import { CartProvider } from './components/cart/CartProvider';
 
 function App() {
   const products = [
