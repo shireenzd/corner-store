@@ -8,12 +8,12 @@ function ProductList({ products }) {
         <>
             <section className="products-list m-10 rounded-lg p-6">
                 <FilterSection products={products} />
+                <div className="cards-grid flex flex-wrap justify-evenly mt-5">
+                    {products.map((product) => (
+                        <ProductCard product={product} key={product.id} />
+                    ))}
+                </div>
             </section>
-            <div className="cards-grid flex flex-wrap justify-evenly mt-5">
-                {products.map((product) => (
-                    <ProductCard product={product} key={product.id} />
-                ))}
-            </div>
         </>
     )
 }

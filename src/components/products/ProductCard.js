@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import { CartContext } from '../cart/CartProvider';
 
 function ProductCard({ product }) {
@@ -18,16 +19,18 @@ function ProductCard({ product }) {
   return (
     <div key={product.id}>
       <div className="shadow-md card m-5">
-        <div className="overflow-hidden">
-          <img src={product.image} alt={product.name} className="images" />
-        </div>
-        <div className="flex justify-between items-center p-4">
-          <h6 className="text-lg font-semibold">{product.name}</h6>
-          <FontAwesomeIcon icon={faHeart}
-            className="cursor-pointer" id="icon"
-            onClick={toggleColor}
-          />
-        </div>
+        <Link to={`/products/${product.id}`}>
+          <div className="overflow-hidden">
+            <img src={product.image} alt={product.name} className="images" />
+          </div>
+          <div className="flex justify-between items-center p-4">
+            <h6 className="text-lg font-semibold">{product.name}</h6>
+            <FontAwesomeIcon icon={faHeart}
+              className="cursor-pointer" id="icon"
+              onClick={toggleColor}
+            />
+          </div>
+        </Link>
         <div className="flex justify-between items-center p-4 border-t">
           <p className="text-xl font-bold">${product.price}</p>
           <button

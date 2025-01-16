@@ -6,9 +6,10 @@ import ProductCard from "./products/ProductCard";
 
 function FilterSection({ products }) {
     const [isSearchVisible, setIsSearchVisible] = useState(false); // State to manage search visibility
-    const [filteredProducts, setFilteredProducts] = useState(products); // State to manage filtered products
+    const [filteredProducts, setFilteredProducts] = useState([]); // Initialize with an empty array
     const [maxPrice, setMaxPrice] = useState(0); // State to manage max price filter
     const [searchTerm, setSearchTerm] = useState(""); // State to manage search term filter
+    const [isFiltering, setIsFiltering] = useState(false); // State to track if filtering is active
 
     const showSearch = (event) => {
         event.preventDefault(); // Prevent default behavior (page refresh/scroll)
@@ -42,7 +43,9 @@ function FilterSection({ products }) {
             // Filter by search term
             return product.name.toLowerCase().includes(searchTerm.toLowerCase());
         });
+
         setFilteredProducts(filtered);
+        setIsFiltering(maxPrice > 0 || searchTerm.trim() !== ""); // Set isFiltering based on whether filters are active
     };
 
     return (
@@ -86,12 +89,13 @@ function FilterSection({ products }) {
                 </div>
             </nav>
 
-            {/* Display filtered products */}
-            <div className="cards-grid">
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
+            {isFiltering && (
+                <div className="cards-grid">
+                    {filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
