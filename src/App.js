@@ -8,6 +8,7 @@ import CartIcon from './components/cart/CartIcon';
 import Cart from './components/cart/Cart';
 import { CartProvider } from './components/cart/CartProvider';
 import ProductDetails from './components/products/ProductDetails';
+import Login from './components/Login';
 
 function App() {
   const products = [
@@ -34,6 +35,7 @@ function App() {
             </>
           } />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/login' element={<Login />} />
           <Route path="/products/:productId" element={<ProductDetails products={products} />} />
         </Routes>
         <Footer />

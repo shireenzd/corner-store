@@ -23,14 +23,14 @@ function ProductCard({ product }) {
           <div className="overflow-hidden">
             <img src={product.image} alt={product.name} className="images" />
           </div>
-          <div className="flex justify-between items-center p-4">
-            <h6 className="text-lg font-semibold">{product.name}</h6>
-            <FontAwesomeIcon icon={faHeart}
-              className="cursor-pointer" id="icon"
-              onClick={toggleColor}
-            />
-          </div>
         </Link>
+        <div className="flex justify-between items-center p-4">
+          <h6 className="text-lg font-semibold">{product.name}</h6>
+          <FontAwesomeIcon icon={faHeart}
+            className="cursor-pointer" id="icon"
+            onClick={toggleColor}
+          />
+        </div>
         <div className="flex justify-between items-center p-4 border-t">
           <p className="text-xl font-bold">${product.price}</p>
           <button
