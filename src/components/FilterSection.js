@@ -10,15 +10,50 @@ function FilterSection({ products }) {
     const [maxPrice, setMaxPrice] = useState(0); // State to manage max price filter
     const [searchTerm, setSearchTerm] = useState(""); // State to manage search term filter
     const [isFiltering, setIsFiltering] = useState(false); // State to track if filtering is active
+    const [sortedProducts, setSortedProducts] = useState(products); // New state to store sorted products
 
+    // Sorting functions
+    const sortPriceAsc = (arrayOfItems) => {
+        return arrayOfItems.sort((prod1, prod2) => prod1.price - prod2.price);
+    };
+
+    const sortPriceDesc = (arrayOfItems) => {
+        return arrayOfItems.sort((prod1, prod2) => prod2.price - prod1.price);
+    };
+
+    const handleSortAsc = () => {
+        const sortedArr = sortPriceAsc([...products]);
+        setSortedProducts(sortedArr);
+    };
+
+    const handleSortDesc = () => {
+        const sortedArr = sortPriceDesc([...products]);
+        setSortedProducts(sortedArr);
+    };
+
+    // Filtering logic
+    const filterProducts = (maxPrice, searchTerm) => {
+        let filtered = products.filter((product) => {
+            const productPrice = parseFloat(product.price);
+            if (maxPrice > 0 && !isNaN(maxPrice) && productPrice >= maxPrice) {
+                return false;
+            }
+            return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        setFilteredProducts(filtered);
+        setIsFiltering(maxPrice > 0 || searchTerm.trim() !== "");
+    };
+
+    // Event handlers for search and price filtering
     const showSearch = (event) => {
-        event.preventDefault(); // Prevent default behavior (page refresh/scroll)
-        setIsSearchVisible(true); // Show the search section
+        event.preventDefault();
+        setIsSearchVisible(true);
     };
 
     const hideSearch = (event) => {
-        event.preventDefault(); // Prevent default behavior (page refresh/scroll)
-        setIsSearchVisible(false); // Hide the search section
+        event.preventDefault();
+        setIsSearchVisible(false);
     };
 
     const handlePriceChange = (event) => {
@@ -33,21 +68,6 @@ function FilterSection({ products }) {
         filterProducts(maxPrice, term);
     };
 
-    const filterProducts = (maxPrice, searchTerm) => {
-        let filtered = products.filter((product) => {
-            const productPrice = parseFloat(product.price);
-            // Filter by price
-            if (maxPrice > 0 && !isNaN(maxPrice) && productPrice >= maxPrice) {
-                return false;
-            }
-            // Filter by search term
-            return product.name.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-
-        setFilteredProducts(filtered);
-        setIsFiltering(maxPrice > 0 || searchTerm.trim() !== ""); // Set isFiltering based on whether filters are active
-    };
-
     return (
         <div>
             <div className="flex justify-between px-10 pb-4">
@@ -56,11 +76,11 @@ function FilterSection({ products }) {
             </div>
             <nav className="flex mx-8 p-4 rounded-lg">
                 <div className="w-full flex justify-between items-center">
-                    <div onClick={showSearch}>
+                    <div onClick={showSearch} className="cursor-pointer" >
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </div>
-                    <div className={`${isSearchVisible ? '' : 'hidden'}`} id="store-search">
-                        <label htmlFor="price-limit" className="text-sm text-white">Price Limit:</label>
+                    <div className={`${isSearchVisible ? '' : 'hidden'} flex items-center`} id="store-search">
+                        <label htmlFor="price-limit" className="text-sm whitespace-nowrap text-white">Price Limit:</label>
                         <input
                             type="number"
                             className="border-2 rounded-lg p-1 mx-2"
@@ -79,19 +99,25 @@ function FilterSection({ products }) {
                         <FontAwesomeIcon icon={faCircleXmark} className="cursor-pointer" onClick={hideSearch} />
                     </div>
                     <div>
-                        <span className="sort-asc p-2 bg-gray-600 rounded-lg cursor-pointer hover:bg-gray-500 text-white">
+                        <span onClick={handleSortAsc} className="sort-asc p-2 bg-gray-600 rounded-lg cursor-pointer hover:bg-gray-500 text-white">
                             Asc <FontAwesomeIcon icon={faArrowUp} />
                         </span>
-                        <span className="sort-desc p-2 bg-gray-600 rounded-lg cursor-pointer hover:bg-gray-500 text-white">
+                        <span onClick={handleSortDesc} className="sort-desc p-2 bg-gray-600 rounded-lg cursor-pointer hover:bg-gray-500 text-white">
                             Desc <FontAwesomeIcon icon={faArrowDown} />
                         </span>
                     </div>
                 </div>
             </nav>
 
-            {isFiltering && (
+            {isFiltering ? (
                 <div className="cards-grid">
                     {filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            ) : (
+                <div className="cards-grid">
+                    {sortedProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>

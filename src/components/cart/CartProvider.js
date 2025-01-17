@@ -16,7 +16,8 @@ const CartProvider = ({ children, product }) => {
     setCart(updatedCart);
     const removedProduct = cart.find((product) => product.id === productId);
     if (removedProduct) {
-      setTotalPrice(totalPrice - parseFloat(removedProduct.price));
+      const newTotalPrice = totalPrice - parseFloat(removedProduct.price);
+      setTotalPrice(newTotalPrice >= 0 ? newTotalPrice : 0);
     }
   };
 
