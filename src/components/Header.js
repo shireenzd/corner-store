@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
-import { Link } from "react-router-dom";
 
 
 function Header() {

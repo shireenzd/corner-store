@@ -34,9 +34,9 @@ function Cart() {
       </div>
       <div className="flex justify-end px-16 mt-4">
         <Link to="/">
-        <button>
-          Checkout
-        </button>
+          <button>
+            Checkout
+          </button>
         </Link>
       </div>
     </div>

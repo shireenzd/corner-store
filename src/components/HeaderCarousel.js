@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function HeaderCarousel() {
     const imageSources = ['/living-room.jpg', '/cover.jpg', '/chair-header.jpg'];
@@ -14,12 +14,8 @@ function HeaderCarousel() {
     }
 
     function moveLeft() {
-        setImgIndex((prevIndex) =>
-            prevIndex === 0 ? imageSources.length - 1 : prevIndex - 1
-        );
-        setScriptIndex((prevIndex) =>
-            prevIndex === 0 ? script.length - 1 : prevIndex - 1
-        );
+        setImgIndex((prevIndex) => prevIndex === 0 ? imageSources.length - 1 : prevIndex - 1);
+        setScriptIndex((prevIndex) => prevIndex === 0 ? script.length - 1 : prevIndex - 1);
     }
 
     return (

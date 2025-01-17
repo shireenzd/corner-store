@@ -5,14 +5,13 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import ProductCard from "./products/ProductCard";
 
 function FilterSection({ products }) {
-    const [isSearchVisible, setIsSearchVisible] = useState(false); // State to manage search visibility
-    const [filteredProducts, setFilteredProducts] = useState([]); // Initialize with an empty array
-    const [maxPrice, setMaxPrice] = useState(0); // State to manage max price filter
-    const [searchTerm, setSearchTerm] = useState(""); // State to manage search term filter
-    const [isFiltering, setIsFiltering] = useState(false); // State to track if filtering is active
-    const [sortedProducts, setSortedProducts] = useState(products); // New state to store sorted products
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [maxPrice, setMaxPrice] = useState(0);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [isFiltering, setIsFiltering] = useState(false);
+    const [sortedProducts, setSortedProducts] = useState(products);
 
-    // Sorting functions
     const sortPriceAsc = (arrayOfItems) => {
         return arrayOfItems.sort((prod1, prod2) => prod1.price - prod2.price);
     };
@@ -31,21 +30,24 @@ function FilterSection({ products }) {
         setSortedProducts(sortedArr);
     };
 
-    // Filtering logic
     const filterProducts = (maxPrice, searchTerm) => {
-        let filtered = products.filter((product) => {
-            const productPrice = parseFloat(product.price);
-            if (maxPrice > 0 && !isNaN(maxPrice) && productPrice >= maxPrice) {
-                return false;
-            }
-            return product.name.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-
-        setFilteredProducts(filtered);
-        setIsFiltering(maxPrice > 0 || searchTerm.trim() !== "");
+        if (maxPrice === 0 && searchTerm.trim() === "") {
+            setFilteredProducts(products);
+            setIsFiltering(false);
+        } else {
+            let filtered = products.filter((product) => {
+                const productPrice = parseFloat(product.price);
+                if (maxPrice > 0 && !isNaN(maxPrice) && productPrice >= maxPrice) {
+                    return false;
+                }
+                return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+            });
+    
+            setFilteredProducts(filtered);
+            setIsFiltering(maxPrice > 0 || searchTerm.trim() !== "");
+        }
     };
 
-    // Event handlers for search and price filtering
     const showSearch = (event) => {
         event.preventDefault();
         setIsSearchVisible(true);
@@ -54,6 +56,9 @@ function FilterSection({ products }) {
     const hideSearch = (event) => {
         event.preventDefault();
         setIsSearchVisible(false);
+        setMaxPrice(0);
+        setSearchTerm("");
+        filterProducts(0, "");
     };
 
     const handlePriceChange = (event) => {

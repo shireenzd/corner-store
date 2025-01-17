@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../cart/CartProvider';
 
-function ProductDetails({ products, addToCart }) {
+function ProductDetails({ products }) {
   const { addItemToCart, animatingProductId } = useContext(CartContext);
 
   const { productId } = useParams();

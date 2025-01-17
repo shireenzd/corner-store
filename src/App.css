@@ -10,65 +10,8 @@ hr {
   border: 1px solid #be9f5c;
 }
 
-.body-no-scroll {
-  overflow: hidden;
-  height: 100vh;
-}
-
 header nav {
   background-color: #1e1e1e;
-}
-
-.header-text {
-  width: 40%;
-}
-
-.images {
-  width: 250px;
-  height: 250px;
-  margin: 20px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-input {
-  border: 1px solid #be9f5c;
-  padding: 5px;
-  border-radius: 4px;
-  background-color: #1e1e1e;
-  color: #f8f5e6;
-}
-
-input:focus-visible, select:focus-visible {
-  outline: 2px solid #be9f5c;
-  border: 1px solid #be9f5c;
-  border-radius: 4px;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.products-list {
-  background-color: #1e1e1e;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  overflow: hidden;
-
-  .card, nav {
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-}
-
-.card {
-  cursor: pointer;
-}
-
-.product-price {
-  color: #be9f5c;
-}
-
-.product-features li::marker {
-  color: #be9f5c;
 }
 
 button {
@@ -86,6 +29,65 @@ button {
 button:hover {
   background-color: #be9f5c;
   color: #121212;
+}
+
+input {
+  border: 1px solid #be9f5c;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+  color: #f8f5e6;
+}
+
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #be9f5c;
+  border: 1px solid #be9f5c;
+  border-radius: 4px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.body-no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.header-text {
+  width: 40%;
+}
+
+.images {
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.products-list {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+
+  .card,
+  nav {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.card {
+  cursor: pointer;
+}
+
+.product-price {
+  color: #be9f5c;
+}
+
+.product-features li::marker {
+  color: #be9f5c;
 }
 
 .text {
@@ -121,7 +123,7 @@ button:hover {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   overflow: hidden;
-}  
+}
 
 .cart-icon {
   background-color: #be9f5c;
@@ -219,7 +221,7 @@ input {
   font-size: 16px;
 }
 
-select  {
+select {
   width: 100%;
   padding: 8px;
   background-color: #1e1e1e;
@@ -239,7 +241,7 @@ select  {
   cursor: pointer;
   font-size: 16px;
   margin: 10px 0 !important;
-  
+
 }
 
 .submit-button:hover {
@@ -256,18 +258,23 @@ select  {
   0% {
     transform: rotate(0deg);
   }
+
   20% {
     transform: rotate(10deg);
   }
+
   40% {
     transform: rotate(-10deg);
   }
+
   60% {
     transform: rotate(10deg);
   }
+
   80% {
     transform: rotate(-10deg);
   }
+
   100% {
     transform: rotate(0deg);
   }

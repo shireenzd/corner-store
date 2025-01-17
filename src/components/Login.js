@@ -73,8 +73,8 @@ function Login() {
                         required
                     >
                         <option value="">Select Country</option>
-                        <option value="USA">United States</option>
-                        <option value="UK">United Kingdom</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Palestine">Palestine</option>
                         <option value="Canada">Canada</option>
                         <option value="Australia">Australia</option>
                         <option value="India">India</option>
