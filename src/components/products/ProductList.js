@@ -1,5 +1,3 @@
-import React from 'react'
-import ProductCard from "./ProductCard"
 import FilterSection from '../FilterSection'
 
 function ProductList({ products }) {

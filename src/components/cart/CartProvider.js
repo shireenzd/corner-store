@@ -8,12 +8,14 @@ const CartProvider = ({ children, product }) => {
   const [animatingProductId, setAnimatingProductId] = useState(null);
 
   const addItemToCart = (product) => {
-    setCart([...cart, product]);
-    setTotalPrice(totalPrice + parseFloat(product.price));
-    setAnimatingProductId(product.id);
-    setTimeout(() => {
-      setAnimatingProductId(null);
-    }, 500);
+    if (!cart.some((item) => item.id === product.id)) {
+      setCart([...cart, product]);
+      setTotalPrice(totalPrice + parseFloat(product.price));
+      setAnimatingProductId(product.id);
+      setTimeout(() => {
+        setAnimatingProductId(null);
+      }, 500);
+    }
   };
 
   const removeItemFromCart = (productId) => {

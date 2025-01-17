@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -46,7 +46,7 @@ function HeaderCarousel() {
                 </button>
             </div>
             <div className="text-wrapper absolute top-1/2 transform -translate-y-1/2 text-center w-5/6">
-                <h1 className="text text-white text-3xl font-bold">
+                <h1 className="drop-shadow-2xl opacity-75 text-white text-3xl font-bold">
                     {script[scriptIndex]}
                 </h1>
             </div>

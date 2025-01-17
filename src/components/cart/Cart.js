@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from './CartProvider';
 
@@ -33,7 +33,7 @@ function Cart() {
         </div>
       </div>
       <div className="flex justify-end px-16 mt-4">
-        <Link to="/checkout">
+        <Link to="/">
         <button>
           Checkout
         </button>
