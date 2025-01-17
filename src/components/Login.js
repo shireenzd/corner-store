@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -18,8 +21,9 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Form Data Submitted:", formData);
-        // Add your login logic here (e.g., API call, validation, etc.)
+        if (Object.keys(formData).every(key => formData[key] !== "")) {
+            navigate("/");
+        }
     };
 
     return (

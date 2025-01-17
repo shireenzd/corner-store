@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../cart/CartProvider';
 
 function ProductDetails({ products, addToCart }) {
+  const { addItemToCart, animatingProductId } = useContext(CartContext);
 
   const { productId } = useParams();
   const product = products.find((product) => product.id === productId);
@@ -17,7 +19,7 @@ function ProductDetails({ products, addToCart }) {
   };
 
   const handleAddToCart = () => {
-    addToCart(product, color);
+    addItemToCart(product);
   };
 
   return (
@@ -39,7 +41,9 @@ function ProductDetails({ products, addToCart }) {
               </select>
             </div>
             <div className="w-full text-end">
-              <button onClick={handleAddToCart} className="bg-be9f5c text-lg rounded-lg mt-5">Add to Cart</button>
+              <button onClick={handleAddToCart}
+                className={`add-to-cart-button ${animatingProductId === product.id ? 'animate' : ''} bg-be9f5c text-lg rounded-lg mt-5`}>
+                Add to Cart</button>
             </div>
           </div>
         </div>

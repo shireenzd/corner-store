@@ -5,10 +5,15 @@ const CartContext = React.createContext();
 const CartProvider = ({ children, product }) => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [animatingProductId, setAnimatingProductId] = useState(null);
 
   const addItemToCart = (product) => {
     setCart([...cart, product]);
     setTotalPrice(totalPrice + parseFloat(product.price));
+    setAnimatingProductId(product.id);
+    setTimeout(() => {
+      setAnimatingProductId(null);
+    }, 500);
   };
 
   const removeItemFromCart = (productId) => {
@@ -22,7 +27,7 @@ const CartProvider = ({ children, product }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, totalPrice, product }}>
+    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, totalPrice, product, animatingProductId }}>
       {children}
     </CartContext.Provider>
   );

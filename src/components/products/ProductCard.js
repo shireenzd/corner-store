@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from '../cart/CartProvider';
 
 function ProductCard({ product }) {
-  const { addItemToCart } = useContext(CartContext);
+  const { addItemToCart, animatingProductId } = useContext(CartContext);
 
   const toggleColor = (event) => {
     event.currentTarget.classList.toggle('clicked');
@@ -34,7 +34,7 @@ function ProductCard({ product }) {
         <div className="flex justify-between items-center p-4 border-t">
           <p className="text-xl font-bold">${product.price}</p>
           <button
-            className="card-button text-white p-2 rounded-lg transition-colors"
+            className={`add-to-cart-button ${animatingProductId === product.id ? 'animate' : ''} card-button text-white p-2 rounded-lg transition-colors`}
             onClick={handleAddToCart}
           >
             Add to Cart
